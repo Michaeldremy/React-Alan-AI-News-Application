@@ -26,6 +26,23 @@ const infoCards = [
     info: "CNN, Wired, BBC News, Time, IGN, Buzzfeed, ABC News...",
     text: "Give me the news from CNN",
   },
+  {
+    color: "#a05327",
+    title: "Helpful Tips Using App",
+    info: "Opening Article by Number",
+    text: "On any article page you can say 'open article number.' Look for popup blocker window and enable in order for this to work.",
+  },
+  {
+    color: "#0f7d27",
+    title: "Helpful Tips Using App",
+    info: "Go Back",
+    text: "This will take you to the homepage by saying 'go back'.",
+  },
+  {
+    color: "#b01412",
+    title: "Stop Alan AI",
+    text: "At any point you can stop Alan AI by clicking the microphone button in the bottom right.",
+  },
 ];
 
 export default function NewsCards({ articles, activeArticle }) {
