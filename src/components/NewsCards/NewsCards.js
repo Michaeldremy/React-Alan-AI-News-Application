@@ -30,7 +30,7 @@ const infoCards = [
     color: "#a05327",
     title: "Helpful Tips Using App",
     info: "Opening Article by Number",
-    text: "On any article page you can say 'open article number.' Look for popup blocker window and enable in order for this to work.",
+    text: "On any article page you can say 'open article number.' Be sure to enable popup blocker.",
   },
   {
     color: "#0f7d27",
