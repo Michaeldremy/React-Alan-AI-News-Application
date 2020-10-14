@@ -28,7 +28,7 @@ const infoCards = [
   },
 ];
 
-export default function NewsCards({ articles }) {
+export default function NewsCards({ articles, activeArticle }) {
   // Material UI hook
   const classes = useStyles();
 
@@ -84,7 +84,7 @@ export default function NewsCards({ articles }) {
       >
         {articles.map((article, i) => (
           <Grid item xs={12} sm={6} md={4} lg={3} style={{ display: "flex" }}>
-            <NewsCard article={article} i={i} />
+            <NewsCard article={article} activeArticle={activeArticle} i={i} />
           </Grid>
         ))}
       </Grid>

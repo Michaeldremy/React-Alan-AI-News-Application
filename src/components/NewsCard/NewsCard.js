@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect, createRef } from "react";
+import classNames from 'classnames';
 import {
   Card,
   CardActions,
@@ -14,12 +15,27 @@ import useStyles from "./styles";
 // articles is coming from NewsCards and is being destructured but we are only grabbing the elements we want to use
 const NewsCard = ({
   article: { description, publishedAt, source, title, url, urlToImage },
-  i,
+  i, activeArticle,
 }) => {
   const classes = useStyles();
+  const [elRefs, setElRefs] = useState([]);
+  // passing ref as a parameter then we are using window.scroll with 0 x-coord and then getting the refs current location and offsetting from the top miuns 50px
+  const scrollToRef = (ref) => window.scroll(0, ref.current.offsetTop - 50);
+
+  useEffect(() => {
+    // Here we are setting refs to be an empty array with 20 indexes and then we will fill the array with refs at specific index or create a ref
+    setElRefs((refs) => Array(20).fill().map((_, j) => refs[j] || createRef()));
+  }, [])
+
+  useEffect(() => {
+    // if index of i is equal to the active article and our refs index is active article then we will scroll to the elRefs[activeArtice] index
+    if (i === activeArticle && elRefs[activeArticle]) {
+      scrollToRef(elRefs[activeArticle]);
+    }
+  }, [i, activeArticle, elRefs])
 
   return (
-    <Card className={classes.card}>
+    <Card ref={elRefs[i]} className={classNames( classes.card, activeArticle === i ? classes.activeCard : null )}>
       <CardActionArea href={url} target="_blank">
         <CardMedia
           className={classes.media}
@@ -46,7 +62,7 @@ const NewsCard = ({
         </CardContent>
       </CardActionArea>
       <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" href={url} target="_blank">
           Learn More
         </Button>
         <Typography variant="h5" color="textSecondary">
